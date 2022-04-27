@@ -1,0 +1,115 @@
+.fullpage {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
+
+}
+
+.home {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+}
+
+.title {
+    font-size: 10vh;
+    font-weight: 500;
+    text-align: right;
+}
+
+.title div {
+}
+
+@keyframes slidein {
+    from {
+        color: rgba(0,0,0,0);
+        right: 100px;
+    }
+    to {
+        color: inherit;
+        right: 0;
+    }
+}
+
+@keyframes fadein {
+    from {
+        color: rgba(0,0,0,0);
+    }
+    to {
+        color: initial;
+    }
+}
+
+.title div span {
+    animation-fill-mode: both;
+    position: relative;
+    animation-name: slidein;
+    animation-duration: 1s;
+}
+
+.title-2 span {
+    animation-delay: 50ms;
+}
+
+.title-3 span {
+    animation-delay: 100ms;
+}
+
+.title-3 {
+    color: #1fb622;
+}
+
+.desc {
+    animation: fadein 1500ms;
+}
+
+.desc-content {
+    max-width: 300px;
+    padding-top: 15px;
+    font-size: 2vh;
+}
+
+.glass {
+    height: 45vh;
+    margin: 0 40px;
+}
+
+.glass img {
+    height: 100%;
+}
+
+.rest {
+    width: 100%;
+    height: 500vh;
+}
+
+.page-sections-ct {
+    font-size: 20px ;
+    margin: 100px 20%;
+}
+
+.page-section {
+    margin: 40vh 0;
+}
+
+.page-section-title {
+    font-size: 40px;
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+}
+
+.page-section-text {
+    margin: 0 20%;
+}
