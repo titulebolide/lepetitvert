@@ -35,6 +35,10 @@
     text-decoration: underline;
 }
 
+.active-section {
+    text-decoration: underline;
+}
+
 .nav-section-ct {
     font-size: 22px;
     display: flex;

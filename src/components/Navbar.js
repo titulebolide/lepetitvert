@@ -1,10 +1,18 @@
 import './Navbar.css';
 import React from 'react';
 
+
 class Navbar extends React.Component {
     state = {
-        fixNavbar : false
+        fixNavbar : false,
+        activeSection: ""
     }
+
+    sections = [
+        {id : "philosophie", name: "Notre Philosophie"},
+        {id : "demarche", name: "Notre Démarche"},
+        {id : "contact", name: "Nous Contacter"}
+    ]
 
     componentWillMount = () => {
         window.addEventListener("scroll", this.handleScroll);
@@ -15,12 +23,24 @@ class Navbar extends React.Component {
     }
 
     handleScroll = () => {
-        console.log(window.scrollY)
         if (window.scrollY > window.innerHeight - 70 && !this.state.fixNavbar) {
             this.setState({fixNavbar: true})
         } else if (window.scrollY < window.innerHeight - 70 && this.state.fixNavbar) {
             this.setState({fixNavbar: false})
         }
+        let activeSection = ""
+        for (let id of this.sections.map(key => key.id)) {
+            let offsetTop = document.getElementById(id).offsetTop
+            let screenHeight = window.innerHeight
+            if (offsetTop - (screenHeight / 2) < window.scrollY && window.scrollY < offsetTop - 70) {
+                activeSection = id
+                break
+            }
+        }
+        if (activeSection !== this.state.activeSection) {
+            this.setState({activeSection})
+        }
+        console.log(this.state.activeSection)
     }
 
     scrollFunction = (x) => {
@@ -30,7 +50,6 @@ class Navbar extends React.Component {
     scrollTo = (pos) => {
         let initPos = window.scrollY
         let scrollToStep = (i) => {
-            console.log(initPos + i/100*(pos-initPos), pos)
             window.scrollTo(0, initPos + this.scrollFunction(i/100)*(pos-initPos))
             if (i < 100) {
                 setTimeout(() => scrollToStep(i+1), 4)
@@ -54,15 +73,13 @@ class Navbar extends React.Component {
                 <span className='logo-V'>V</span>
             </div>
             <div className='nav-section-ct'>
-                <div className='nav-section clickable' onClick={() => {this.navigateTo('philosophie')}}>
-                    Notre philosophie
-                </div>
-                <div className='nav-section clickable' onClick={() => {this.navigateTo('demarche')}}>
-                    Notre démarche
-                </div>
-                <div className='nav-section clickable' onClick={() => {this.navigateTo('contact')}}>
-                    Nous contacter
-                </div>
+                {
+                    this.sections.map((section) => (
+                        <div className={'nav-section clickable' + (this.state.activeSection === section.id ? ' active-section' : '')} onClick={() => {this.navigateTo(section.id)}}>
+                            {section.name}
+                        </div>
+                    ))
+                }
             </div>
         </div>
     )
