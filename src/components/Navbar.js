@@ -5,7 +5,8 @@ import React from 'react';
 class Navbar extends React.Component {
     state = {
         fixNavbar : false,
-        activeSection: ""
+        activeSection: "",
+        hideNavbar: false
     }
 
     sections = [
@@ -14,12 +15,27 @@ class Navbar extends React.Component {
         {id : "contact", name: "Nous Contacter"}
     ]
 
-    componentWillMount = () => {
+    componentDidMount = () => {
         window.addEventListener("scroll", this.handleScroll);
+        window.addEventListener("resize", this.handleResize);
+        if (window.innerWidth < 800) {
+            this.setState({hideNavbar: true})
+        }
     }
 
     componentWillUnmount = () => {
         window.removeEventListener("scroll", this.handleScroll);
+        window.removeEventListener("resize", this.handleResize);
+    }
+
+    handleResize = () => {
+        let hideNavbar = false
+        if (window.innerWidth < 800) {
+            hideNavbar = true
+        }
+        if (this.state.hideNavbar !== hideNavbar) {
+            this.setState({hideNavbar})
+        }
     }
 
     handleScroll = () => {
@@ -40,7 +56,6 @@ class Navbar extends React.Component {
         if (activeSection !== this.state.activeSection) {
             this.setState({activeSection})
         }
-        console.log(this.state.activeSection)
     }
 
     scrollFunction = (x) => {
@@ -64,9 +79,8 @@ class Navbar extends React.Component {
         this.scrollTo(goal)
     }
 
-
     render = () => (
-        <div className='navbar' style = { this.state.fixNavbar ? {'position' : 'fixed'} : {}}>
+        <div className={'navbar' + (this.state.fixNavbar ? ' navbar-fixed' : '') + (this.state.hideNavbar ? ' navbar-hidden' : '')}>
             <div className='logo' onClick={() => {window.location="/"}}>
                 <span>L</span>
                 <span>P</span>
@@ -75,7 +89,7 @@ class Navbar extends React.Component {
             <div className='nav-section-ct'>
                 {
                     this.sections.map((section) => (
-                        <div className={'nav-section clickable' + (this.state.activeSection === section.id ? ' active-section' : '')} onClick={() => {this.navigateTo(section.id)}}>
+                        <div key={section.id} className={'nav-section clickable' + (this.state.activeSection === section.id ? ' active-section' : '')} onClick={() => {this.navigateTo(section.id)}}>
                             {section.name}
                         </div>
                     ))

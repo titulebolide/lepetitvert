@@ -8,6 +8,14 @@
     position: relative;
 }
 
+.navbar-fixed {
+    position: fixed !important;
+}
+
+.navbar-hidden {
+    display: none !important;
+}
+
 .logo {
     font-size: 30px;
     font-weight: 900;
