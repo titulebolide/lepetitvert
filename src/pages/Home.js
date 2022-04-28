@@ -8,19 +8,21 @@ class Home extends React.Component {
       <div className="fullpage">
         <div className='home'>
           <div className='home-content'>
-            <div className='title'>
-              <div className='title-1'>
-                <span>Le</span>
+            <div className='title-ct'>
+              <div className='title'>
+                <div className='title-1'>
+                  <span>Le</span>
+                </div>
+                <div className='title-2'>
+                  <span>Petit</span>
+                </div>
+                <div className='title-3'>
+                  <span>Vert</span>
+                </div>
               </div>
-              <div className='title-2'>
-                <span>Petit</span>
+              <div className='glass'>
+                <img src='/static/glass.svg' alt='logo'/>
               </div>
-              <div className='title-3'>
-                <span>Vert</span>
-              </div>
-            </div>
-            <div className='glass'>
-              <img src='/static/glass.svg' alt='logo'/>
             </div>
             <div className='desc'>
               <div className='desc-content'>

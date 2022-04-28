@@ -67,7 +67,7 @@
     width: 0;
     color: rgba(0,0,0,0);
     background-color: white;
-    font-size: 4px;
+    font-size: 0.4em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,7 +78,7 @@
     height: 100vh;
     width: 100%;
     color: rgba(0,0,0,1);
-    font-size: 40px;
+    font-size: 4em;
 }
 
 .navbar-phone-section {
@@ -108,7 +108,7 @@
 }
 
 .logo {
-    font-size: 30px;
+    font-size: 3em;
     font-weight: 900;
     height: 100%;
     display: flex;
@@ -139,7 +139,7 @@
 }
 
 .nav-section-ct {
-    font-size: 22px;
+    font-size: 2.2em;
     display: flex;
     align-items: center;
     flex-direction: row;
