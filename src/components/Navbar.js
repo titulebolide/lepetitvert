@@ -6,7 +6,8 @@ class Navbar extends React.Component {
     state = {
         fixNavbar : false,
         activeSection: "",
-        hideNavbar: false
+        phoneNavbar: false,
+        navbarPhoneActive: false
     }
 
     sections = [
@@ -19,7 +20,7 @@ class Navbar extends React.Component {
         window.addEventListener("scroll", this.handleScroll);
         window.addEventListener("resize", this.handleResize);
         if (window.innerWidth < 800) {
-            this.setState({hideNavbar: true})
+            this.setState({phoneNavbar: true})
         }
     }
 
@@ -29,12 +30,12 @@ class Navbar extends React.Component {
     }
 
     handleResize = () => {
-        let hideNavbar = false
+        let phoneNavbar = false
         if (window.innerWidth < 800) {
-            hideNavbar = true
+            phoneNavbar = true
         }
-        if (this.state.hideNavbar !== hideNavbar) {
-            this.setState({hideNavbar})
+        if (this.state.phoneNavbar !== phoneNavbar) {
+            this.setState({phoneNavbar})
         }
     }
 
@@ -74,28 +75,58 @@ class Navbar extends React.Component {
     }
 
     navigateTo = (id) => {
+        if (this.state.phoneNavbar) {
+            this.setState({navbarPhoneActive: false})
+        }
         let height = document.getElementById(id).offsetTop
         let goal = height - 300
         this.scrollTo(goal)
     }
 
+    handleClickNavbarPhone = () => {
+        this.setState({navbarPhoneActive : !this.state.navbarPhoneActive})
+    }
+
     render = () => (
-        <div className={'navbar' + (this.state.fixNavbar ? ' navbar-fixed' : '') + (this.state.hideNavbar ? ' navbar-hidden' : '')}>
-            <div className='logo' onClick={() => {window.location="/"}}>
-                <span>L</span>
-                <span>P</span>
-                <span className='logo-V'>V</span>
+        <>
+            <div className={'navbar' + (this.state.fixNavbar ? ' navbar-fixed' : '') + (this.state.phoneNavbar ? ' hidden' : '')}>
+                <div className='logo' onClick={() => {window.location="/"}}>
+                    <span>L</span>
+                    <span>P</span>
+                    <span className='logo-V'>V</span>
+                </div>
+                <div className='nav-section-ct'>
+                    {
+                        this.sections.map((section) => (
+                            <div key={section.id} className={'nav-section clickable' + (this.state.activeSection === section.id ? ' active-section' : '')} onClick={() => {this.navigateTo(section.id)}}>
+                                {section.name}
+                            </div>
+                        ))
+                    }
+                </div>
             </div>
-            <div className='nav-section-ct'>
-                {
-                    this.sections.map((section) => (
-                        <div key={section.id} className={'nav-section clickable' + (this.state.activeSection === section.id ? ' active-section' : '')} onClick={() => {this.navigateTo(section.id)}}>
-                            {section.name}
-                        </div>
-                    ))
-                }
+
+            <div className={"navbar-phone" + (!this.state.phoneNavbar ? ' hidden' : '') + (this.state.navbarPhoneActive ? ' navbar-phone-active' : '')} onClick={this.handleClickNavbarPhone}>
+                <div className='navbar-phone-button'>
+                    <div className='navbar-phone-dash navbar-phone-dash-top'></div>
+                    <div className='navbar-phone-dash navbar-phone-dash-center'></div>
+                    <div className='navbar-phone-dash navbar-phone-dash-bottom'></div>
+                </div>
+                
+                <div className='navbar-phone-content'>
+                    {
+                        this.sections.map((section) => (
+                            <div key={section.id} className='navbar-phone-section' onClick={() => {this.navigateTo(section.id)}}>
+                                {section.name}
+                            </div>
+                        ))
+                    }
+                </div>
+            
             </div>
-        </div>
+
+        </>
+        
     )
 }
 

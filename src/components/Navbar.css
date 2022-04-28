@@ -12,7 +12,98 @@
     position: fixed !important;
 }
 
-.navbar-hidden {
+.navbar-phone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navbar-phone-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0);
+    z-index: 2;
+}
+
+.navbar-phone-active {
+    height: 100vh;
+    width: 100%;
+}
+
+.navbar-phone-button:hover{
+    border: 1px solid grey;
+}
+
+.navbar-phone-dash {
+    width: 35px;
+    height: 3px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.navbar-phone-active .navbar-phone-dash-center{
+    width: 0px;
+}
+
+.navbar-phone-active .navbar-phone-dash-top{
+    transform: translateY(13px) rotate(45deg) ;
+}
+
+.navbar-phone-active .navbar-phone-dash-bottom{
+    transform: translateY(-13px) rotate(-45deg) ;
+}
+
+.navbar-phone-dash-center {
+    margin: 10px auto;
+}
+
+.navbar-phone-content {
+    height: 0;
+    width: 0;
+    color: rgba(0,0,0,0);
+    background-color: white;
+    font-size: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-phone-active .navbar-phone-content {
+    height: 100vh;
+    width: 100%;
+    color: rgba(0,0,0,1);
+    font-size: 40px;
+}
+
+.navbar-phone-section {
+    margin: 20px 0;
+    width: 100%;
+    text-align: center;
+    border-color: rgba(0,0,0,0);
+    border-style: solid;
+    border-width: 1px 0px;
+    padding: 10px 0;
+}
+
+.navbar-phone-section:hover {
+    border-color: rgba(0,0,0,1);
+}
+
+.navbar-phone-active .navbar-phone-section {
+    position: initial;
+}
+
+.navbar-phone-dash, .navbar-phone-content, .navbar-phone-section{
+    transition-duration: 300ms;
+}
+
+.hidden {
     display: none !important;
 }
 
