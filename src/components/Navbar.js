@@ -1,6 +1,6 @@
 import './Navbar.css';
 import React from 'react';
-
+import { isMobile } from "react-device-detect";
 
 class Navbar extends React.Component {
     state = {
@@ -19,7 +19,7 @@ class Navbar extends React.Component {
     componentDidMount = () => {
         window.addEventListener("scroll", this.handleScroll);
         window.addEventListener("resize", this.handleResize);
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 800 || isMobile) {
             this.setState({phoneNavbar: true})
         }
     }
@@ -31,7 +31,7 @@ class Navbar extends React.Component {
 
     handleResize = () => {
         let phoneNavbar = false
-        if (window.innerWidth < 800) {
+        if (window.innerWidth < 800 || isMobile) {
             phoneNavbar = true
         }
         if (this.state.phoneNavbar !== phoneNavbar) {
